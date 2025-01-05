@@ -3,25 +3,20 @@ package com.plcoding.bookpedia
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
-import com.plcoding.bookpedia.book.data.network.KtorRemoteBookDataSource
-import com.plcoding.bookpedia.book.data.repositories.BookRepositoryImpl
 import com.plcoding.bookpedia.book.presentation.book_list.BookListScreenRoot
 import com.plcoding.bookpedia.book.presentation.book_list.BookListViewModel
-import com.plcoding.bookpedia.core.data.HttpClientFactory
-import io.ktor.client.engine.HttpClientEngine
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun App(engine:HttpClientEngine) {
+fun App() {
     MaterialTheme {
         //todo navigation
 
+        val viewModel = koinViewModel<BookListViewModel>()
+
         BookListScreenRoot(
+            viewModel = viewModel,
             onBookClick = {},
-            viewModel = remember { BookListViewModel(
-                BookRepositoryImpl(KtorRemoteBookDataSource(
-                    HttpClientFactory.create(engine)
-                ))
-            ) }
         )
 
     }

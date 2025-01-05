@@ -11,7 +11,6 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -28,6 +27,7 @@ class BookListViewModel(
 ) : ViewModel() {
 
     private val cachedBooks = emptyList<Book>()
+    private var searchJob: Job? = null
 
     private val _state = MutableStateFlow(BookListState())
     val state = _state
@@ -41,7 +41,7 @@ class BookListViewModel(
             SharingStarted.WhileSubscribed(5000L),
             _state.value
         )
-    private var searchJob: Job? = null
+
 
 
     fun onAction(action: BookListAction) {

@@ -1,7 +1,6 @@
 package com.plcoding.bookpedia.book.data.network
 
 import com.plcoding.bookpedia.book.data.dto.SearchResponseDto
-import com.plcoding.bookpedia.book.domain.Book
 import com.plcoding.bookpedia.core.data.safeCall
 import com.plcoding.bookpedia.core.domain.DataError
 import com.plcoding.bookpedia.core.domain.Result
