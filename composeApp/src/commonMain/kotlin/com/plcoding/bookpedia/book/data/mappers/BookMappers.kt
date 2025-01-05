@@ -5,7 +5,7 @@ import com.plcoding.bookpedia.book.domain.Book
 
 
 fun SearchedBookDto.toBook(): Book = Book(
-    id = id,
+    id = id.substringAfterLast("/"),
     title = title,
     ratingCount = ratingCount,
     averageRating = ratingAverage,

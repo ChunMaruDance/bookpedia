@@ -1,6 +1,7 @@
 package com.plcoding.bookpedia.book.presentation.book_list.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,7 +52,8 @@ fun BookListItem(
 
     Surface(
         shape = RoundedCornerShape(32.dp),
-        modifier = modifier,
+        modifier = modifier
+            .clickable { onItemClick() },
         color = LightBlue.copy(0.2f)
     ) {
 
