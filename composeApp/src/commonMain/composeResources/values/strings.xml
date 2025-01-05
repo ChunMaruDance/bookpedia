@@ -4,5 +4,6 @@
     <string name="close_hint">Clear search</string>
     <string name="search_results">Search Results</string>
     <string name="favourites">Favourites</string>
-
+    <string name="no_search_results">Oops, there aren't any books for your search query</string>
+    <string name="no_favorite_results">Oops, you haven't favorites books yet</string>
 </resources>
