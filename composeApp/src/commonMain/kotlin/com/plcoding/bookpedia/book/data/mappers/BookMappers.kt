@@ -13,7 +13,7 @@ fun SearchedBookDto.toBook(): Book = Book(
     else "https://covers.openlibrary.org/b/olid/${coverAlternativeKey}-L.jpg",
     authors = authorNames ?: emptyList(),
     languages = languages ?: emptyList(),
-    descriptor = null,
+    description = null,
     firstPublishYear = publishYear.toString(),
     numPages = numPagesMedium,
     numEditions = numEditions ?: 0
