@@ -1,4 +1,4 @@
-package com.plcoding.bookpedia.book.presentation.navigation
+package com.plcoding.bookpedia.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

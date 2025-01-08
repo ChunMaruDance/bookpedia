@@ -1,4 +1,5 @@
-package com.plcoding.bookpedia.book.presentation.navigation
+package com.plcoding.bookpedia.core.presentation.navigation
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -10,6 +11,9 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.plcoding.bookpedia.book.presentation.SelectedBookViewModel
+import com.plcoding.bookpedia.book.presentation.book_detail.BookDetailAction
+import com.plcoding.bookpedia.book.presentation.book_detail.BookDetailScreenRoot
+import com.plcoding.bookpedia.book.presentation.book_detail.BookDetailViewModel
 import com.plcoding.bookpedia.book.presentation.book_list.BookListScreenRoot
 import com.plcoding.bookpedia.book.presentation.book_list.BookListViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -45,8 +49,18 @@ fun UiNavigation() {
                 entry.sharedKoinViewModel<SelectedBookViewModel>(navController)
 
             val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
+            val detailViewModel = koinViewModel<BookDetailViewModel>()
 
-            Text(text = selectedBook.toString())
+            LaunchedEffect(selectedBook) {
+                detailViewModel.onAction(BookDetailAction.OnSelectedBookChange(selectedBook))
+            }
+
+            BookDetailScreenRoot(
+                viewModel = detailViewModel,
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
 
 
         }

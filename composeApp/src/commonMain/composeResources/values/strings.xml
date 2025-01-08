@@ -14,4 +14,11 @@
     <string name="error_too_many_requests">Oops, quota seems to be exceeded </string>
     <string name="error_serialization">Oops, couldn't parse data </string>
 
+    <string name="book_cover">Book cover</string>
+    <string name="ration">Rating</string>
+    <string name="pages">Rating</string>
+    <string name="languages">Languages</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="description_unavailable">Description unavailable</string>
+
 </resources>

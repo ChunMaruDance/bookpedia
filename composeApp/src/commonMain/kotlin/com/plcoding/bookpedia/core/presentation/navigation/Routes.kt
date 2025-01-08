@@ -1,4 +1,4 @@
-package com.plcoding.bookpedia.book.presentation.navigation
+package com.plcoding.bookpedia.core.presentation.navigation
 
 import kotlinx.serialization.Serializable
 
