@@ -21,6 +21,7 @@ suspend inline fun <reified T> safeCall(
         return Result.Error(DataError.Remote.NO_INTERNET)
     } catch (e: Exception) {
         coroutineContext.ensureActive()
+
         return Result.Error(DataError.Remote.UNKNOWN)
     }
 
@@ -44,6 +45,5 @@ suspend inline fun <reified T> responseToResult(
         429 -> Result.Error(DataError.Remote.TOO_MANY_REQUESTS)
         in 500..599 -> Result.Error(DataError.Remote.SERVER)
         else -> Result.Error(DataError.Remote.UNKNOWN)
-
     }
 }

@@ -12,7 +12,7 @@ class BookDetailViewModel : ViewModel() {
 
     fun onAction(action: BookDetailAction) {
         when (action) {
-            BookDetailAction.OnBackClick -> TODO()
+            BookDetailAction.OnBackClick -> Unit
             BookDetailAction.OnFavoriteClick -> TODO()
             is BookDetailAction.OnSelectedBookChange -> {
                 _state.update { it.copy(book = action.book) }
