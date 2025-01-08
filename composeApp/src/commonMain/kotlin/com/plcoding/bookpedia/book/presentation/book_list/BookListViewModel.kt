@@ -43,13 +43,10 @@ class BookListViewModel(
         )
 
 
-
     fun onAction(action: BookListAction) {
 
         when (action) {
-            is BookListAction.OnBookClick -> {
-                // todo navigate
-            }
+            is BookListAction.OnBookClick -> Unit
 
             is BookListAction.OnSearchQueryChange -> {
                 _state.update {
