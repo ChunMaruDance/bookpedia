@@ -1,7 +1,10 @@
 package com.plcoding.bookpedia.core.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,13 +22,13 @@ enum class ChipSizes {
 
 @Composable
 fun BookChip(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     size: ChipSizes = ChipSizes.REGULAR,
-    chipContent: @Composable () -> Unit
+    chipContent: @Composable RowScope.() -> Unit
 ) {
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .widthIn(
                 min = when (size) {
                     ChipSizes.SMALL -> 50.dp
@@ -40,7 +43,13 @@ fun BookChip(
             ),
         contentAlignment = Alignment.Center
     ) {
-        chipContent()
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            chipContent()
+        }
+
     }
 
 
