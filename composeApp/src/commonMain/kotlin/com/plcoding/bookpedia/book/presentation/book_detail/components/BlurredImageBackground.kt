@@ -64,7 +64,7 @@ fun BlurredImageBackground(
                     .fillMaxWidth()
                     .background(DarkBlue)
             ) {
-                imgLoadResult?.getOrNull()?.let { painter ->
+                imgLoadResult?.getOrNull()?.let {
                     Image(
                         painter = painter,
                         contentDescription = stringResource(Res.string.book_cover),
