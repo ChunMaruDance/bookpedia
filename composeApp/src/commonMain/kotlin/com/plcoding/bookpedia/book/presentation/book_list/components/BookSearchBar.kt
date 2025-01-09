@@ -76,7 +76,7 @@ fun BookSearchBar(
                 AnimatedVisibility(
                     visible = searchQuery.isNotBlank()
                 ) {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = { onSearchQueryChange("") }) {
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = stringResource(Res.string.close_hint),
