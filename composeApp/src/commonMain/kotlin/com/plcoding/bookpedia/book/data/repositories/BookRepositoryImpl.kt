@@ -23,4 +23,10 @@ class BookRepositoryImpl(
 
     }
 
+    override suspend fun getBookDescription(bookId: String): Result<String?, DataError> {
+        return bookDataSource.getBookDetails(bookId).map { dto ->
+            dto.description
+        }
+    }
+
 }

@@ -115,7 +115,7 @@ private fun BookDetailScreen(
                         ) {
                             BookChip {
                                 Text(
-                                    text = (round(rating * 100) / 10.0).toString()
+                                    text = (round(rating * 10) / 10.0).toString()
                                 )
                                 Icon(
                                     imageVector = Icons.Default.Star,
