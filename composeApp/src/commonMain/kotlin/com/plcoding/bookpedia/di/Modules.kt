@@ -1,5 +1,8 @@
 package com.plcoding.bookpedia.di
 
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import com.plcoding.bookpedia.book.data.database.BookDataBase
+import com.plcoding.bookpedia.book.data.database.DataBaseFactory
 import com.plcoding.bookpedia.book.data.network.KtorRemoteBookDataSource
 import com.plcoding.bookpedia.book.data.network.RemoteBookDataSource
 import com.plcoding.bookpedia.book.data.repositories.BookRepositoryImpl
@@ -23,6 +26,16 @@ val sharedModule = module {
 
     singleOf(::KtorRemoteBookDataSource).bind<RemoteBookDataSource>()
     singleOf(::BookRepositoryImpl).bind<BookRepository>()
+
+    single<BookDataBase> {
+        get<DataBaseFactory>()
+            .create()
+            .setDriver(BundledSQLiteDriver())
+            .build()
+    }
+
+    single { get<BookDataBase>().getBookDao() }
+
 
     viewModelOf(::BookListViewModel)
     viewModelOf(::SelectedBookViewModel)

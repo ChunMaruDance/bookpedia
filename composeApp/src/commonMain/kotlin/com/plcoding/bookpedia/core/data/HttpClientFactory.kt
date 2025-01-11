@@ -20,7 +20,9 @@ object HttpClientFactory {
             install(ContentNegotiation) {
                 json(
                     json = Json {
-                        ignoreUnknownKeys = true
+                        isLenient = true  // Дозволяє обробляти невірні символи або неочікувані формати
+                        ignoreUnknownKeys = true  // Ігнорує невідомі ключі
+                        coerceInputValues = true  // Приводить значення до очікуваного типу
                     }
                 )
             }
