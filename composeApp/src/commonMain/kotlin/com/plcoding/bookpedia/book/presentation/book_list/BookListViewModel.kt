@@ -76,6 +76,7 @@ class BookListViewModel(
                         it.copy(favoritesBooks = books)
                     }
                 }
+                .launchIn(viewModelScope)
         }
 
 

@@ -1,6 +1,5 @@
 package com.plcoding.bookpedia.book.data.database
 
-import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters

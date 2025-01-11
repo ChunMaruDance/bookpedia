@@ -15,6 +15,7 @@ import com.plcoding.bookpedia.core.domain.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
 class BookRepositoryImpl(
     private val bookDataSource: RemoteBookDataSource,
@@ -33,14 +34,15 @@ class BookRepositoryImpl(
     }
 
     override suspend fun getBookDescription(bookId: String): Result<String?, DataError> {
-        val localResult = dao.getBook(bookId)
-        return if (localResult == null) {
+        return try {
+            val localResult = dao.getBook(bookId)
+            Result.Success(localResult.description)
+        } catch (e: Exception) {
             bookDataSource.getBookDetails(bookId).map { dto ->
                 dto.description
             }
-        } else {
-            Result.Success(localResult.description)
         }
+
     }
 
     override suspend fun getFavoritesBooks(): Flow<List<Book>> {
