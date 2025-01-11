@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -43,6 +44,8 @@ import com.plcoding.bookpedia.book.presentation.book_list.components.TabItems
 import com.plcoding.bookpedia.core.presentation.DarkBlue
 import com.plcoding.bookpedia.core.presentation.DesertWhite
 import com.plcoding.bookpedia.core.presentation.SandYellow
+import com.plcoding.bookpedia.core.presentation.animations.FadeInAnimation
+import com.plcoding.bookpedia.core.presentation.animations.PulseAnimation
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -101,19 +104,22 @@ private fun BookListScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        BookSearchBar(
-            searchQuery = state.searchQuery,
-            onSearchQueryChange = { query ->
-                onAction(BookListAction.OnSearchQueryChange(query))
-            },
-            onImeSearch = {
-                keyboardController?.hide()
-            },
-            modifier = Modifier
-                .widthIn(max = 400.dp)
-                .fillMaxWidth()
-                .padding(16.dp)
-        )
+        FadeInAnimation {
+            BookSearchBar(
+                searchQuery = state.searchQuery,
+                onSearchQueryChange = { query ->
+                    onAction(BookListAction.OnSearchQueryChange(query))
+                },
+                onImeSearch = {
+                    keyboardController?.hide()
+                },
+                modifier = Modifier
+                    .widthIn(max = 400.dp)
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+        }
+
 
         Surface(
             modifier = Modifier
@@ -179,7 +185,11 @@ private fun BookListScreen(
                         when (page) {
                             TabItems.SearchResults.index -> {
                                 if (state.isLoading) {
-                                    CircularProgressIndicator()
+                                    PulseAnimation(
+                                        modifier = Modifier
+                                            .size(70.dp)
+                                            .align(Alignment.Center)
+                                    )
                                 } else {
 
                                     when {

@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.plcoding.bookpedia.book.domain.Book
+import com.plcoding.bookpedia.core.presentation.animations.FadeInAnimation
 
 @Composable
 fun BookList(
@@ -21,30 +22,32 @@ fun BookList(
     modifier: Modifier,
     scrollState: LazyListState = rememberLazyListState(),
 ) {
+    FadeInAnimation {
+        LazyColumn(
+            modifier = modifier,
+            state = scrollState,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-    LazyColumn(
-        modifier = modifier,
-        state = scrollState,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+            items(
+                items = books,
+                key = { it.id }) { book ->
 
-        items(
-            items = books,
-            key = { it.id }) { book ->
+                BookListItem(
+                    book = book,
+                    onItemClick = { onBookClick(book) },
+                    modifier = Modifier
+                        .widthIn(max = 700.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                )
 
-            BookListItem(
-                book = book,
-                onItemClick = { onBookClick(book) },
-                modifier = Modifier
-                    .widthIn(max = 700.dp)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            )
+            }
+
 
         }
-
-
     }
+
 
 }

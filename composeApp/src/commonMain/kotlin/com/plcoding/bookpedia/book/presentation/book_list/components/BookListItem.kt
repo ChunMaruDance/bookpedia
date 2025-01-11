@@ -40,6 +40,7 @@ import coil3.compose.rememberAsyncImagePainter
 import com.plcoding.bookpedia.book.domain.Book
 import com.plcoding.bookpedia.core.presentation.LightBlue
 import com.plcoding.bookpedia.core.presentation.SandYellow
+import com.plcoding.bookpedia.core.presentation.animations.PulseAnimation
 import org.jetbrains.compose.resources.painterResource
 import kotlin.math.round
 
@@ -91,7 +92,9 @@ fun BookListItem(
                 )
 
                 when (val result = imageLoadResult) {
-                    null -> CircularProgressIndicator()
+                    null -> PulseAnimation(
+                        modifier = Modifier.size(50.dp)
+                    )
 
                     else -> {
                         Image(

@@ -1,5 +1,12 @@
 package com.plcoding.bookpedia.core.presentation.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
@@ -24,7 +31,26 @@ fun BookNavHost(
         ) {
             composable<Route.BookList> { onBookListCall(it) }
 
-            composable<Route.BookDetail> { entry ->
+            composable<Route.BookDetail>(
+                enterTransition = {
+                    slideInHorizontally(
+                        initialOffsetX = { it },
+                        animationSpec = tween(1000)
+                    ) + fadeIn()
+                },
+                exitTransition = {
+                    slideOutHorizontally(
+                        targetOffsetX = { it },
+                        animationSpec = tween(1000)
+                    ) + fadeOut()
+                },
+                popExitTransition = {
+                    slideOutHorizontally(
+                        targetOffsetX = { it },
+                        animationSpec = tween(1000)
+                    ) + fadeOut()
+                }
+            ) { entry ->
                 onBookDetail(entry)
             }
 
