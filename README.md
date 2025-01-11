@@ -1,14 +1,25 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+# Kotlin Multiplatform Project
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+This is a Kotlin Multiplatform project targeting Android, iOS, and Desktop platforms. The project structure is designed to maximize code sharing while also allowing platform-specific customization.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Project Structure
 
+- **`/composeApp`**  
+  This directory contains code that will be shared across your Compose Multiplatform applications.  
+  It is organized into several subfolders:
+  - **`commonMain`**: Code that’s common for all platforms (Android, iOS, Desktop).
+  - **Platform-Specific Folders**: Kotlin code specific to the respective platform:
+    - **`androidMain`**: Android-specific code.
+    - **`iosMain`**: iOS-specific code (e.g., calling Apple's CoreCrypto APIs).
+    - **`desktopMain`**: Desktop-specific code.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- **`/iosApp`**  
+  This folder contains the entry point for your iOS application. Even if you're sharing UI code with Compose Multiplatform, you need this folder for iOS-specific setup.  
+  You can also add SwiftUI code for iOS-specific customizations here.
+
+## Setup Instructions
+
+1. **Clone the repository**:
+   Clone this project to your local machine using the following command:
+   ```bash
+   git clone https://github.com/ChunMaruDance/bookpedia.git
