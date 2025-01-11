@@ -1,5 +1,6 @@
 package com.plcoding.bookpedia.book.data.database
 
+import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -9,6 +10,7 @@ import androidx.room.TypeConverters
     entities = [BookEntity::class],
 )
 @TypeConverters(BookTypeConverters::class)
+@ConstructedBy(BookDataBaseConstructor::class)
 abstract class BookDataBase : RoomDatabase() {
 
     abstract fun getBookDao(): BookDao
