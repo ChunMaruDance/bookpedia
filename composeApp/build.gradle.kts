@@ -71,6 +71,14 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
         }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(kotlin("test-annotations-common"))
+            implementation(libs.junit)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.turbine)
+
+        }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
@@ -82,16 +90,6 @@ kotlin {
 
         dependencies {
             ksp(libs.androidx.room.compiler)
-        }
-
-        //test
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-            implementation(libs.junit)
-            implementation(libs.kotlinx.coroutines.test)
-            implementation(libs.mockk)
-            implementation(libs.turbine)
-
         }
 
 
